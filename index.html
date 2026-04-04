@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Noble Dev | Secure Portal</title>
+    <style>
+        /* CSS BY AZRI BAHTIAR - 13TH DEVELOPER */
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Poppins:wght@300;400;600&display=swap');
+
+        body, html {
+            margin: 0; padding: 0; background: #050505; color: #e0e0e0;
+            font-family: 'Poppins', sans-serif; overflow-x: hidden;
+        }
+
+        /* --- LOGIN OVERLAY --- */
+        #login-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: #000; display: flex; flex-direction: column;
+            justify-content: center; align-items: center; z-index: 9999;
+            transition: 0.8s ease;
+        }
+        #login-overlay img { width: 80px; margin-bottom: 20px; filter: drop-shadow(0 0 10px #00d2ff); }
+        #login-overlay h2 { color: #00d2ff; font-family: 'Orbitron'; margin-bottom: 20px; }
+        input[type="password"] {
+            background: #111; border: 1px solid #00d2ff; padding: 12px;
+            color: #00d2ff; border-radius: 8px; text-align: center; outline: none;
+            box-shadow: 0 0 10px rgba(0,210,255,0.2); width: 200px;
+        }
+        .btn-login {
+            margin-top: 15px; padding: 10px 30px; background: #00d2ff;
+            color: #000; font-weight: bold; border: none; border-radius: 5px;
+            cursor: pointer; font-family: 'Orbitron';
+        }
+
+        /* --- MAIN CONTENT --- */
+        #main-content { display: none; opacity: 0; transition: 1s ease; }
+
+        nav {
+            padding: 20px; text-align: center; background: rgba(0,0,0,0.9);
+            border-bottom: 2px solid #00d2ff; font-family: 'Orbitron';
+            color: #00d2ff; position: sticky; top: 0; z-index: 100;
+        }
+
+        .hero { text-align: center; padding: 60px 20px; background: radial-gradient(circle at 50% 50%, #001a33 0%, #050505 100%); }
+        .hero img { width: 140px; border-radius: 50%; border: 3px solid #00d2ff; box-shadow: 0 0 20px #00d2ff; }
+
+        .container { max-width: 900px; margin: auto; padding: 20px; }
+        
+        .motivation-box {
+            background: rgba(255,255,255,0.05); border-left: 4px solid #00d2ff;
+            padding: 30px; border-radius: 10px; line-height: 1.8; margin: 40px 0;
+            text-align: justify;
+        }
+        .motivation-box h2 { color: #00d2ff; font-family: 'Orbitron'; font-size: 1.3em; }
+
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+        .card { background: #111; padding: 20px; border-radius: 15px; border: 1px solid #333; }
+        .card h3 { color: #00ff88; margin-top: 0; font-family: 'Orbitron'; font-size: 1em; }
+
+        .btn-tele {
+            display: inline-block; padding: 12px 30px; background: #00d2ff;
+            color: #000; text-decoration: none; border-radius: 50px;
+            font-weight: bold; margin-top: 20px;
+        }
+
+        footer { text-align: center; padding: 40px; color: #444; font-size: 11px; }
+    </style>
+</head>
+<body>
+
+    <div id="login-overlay">
+        <img src="https://files.catbox.moe/zwez4r.jpg" alt="Noble">
+        <h2>SECURE ACCESS</h2>
+        <input type="password" id="passInput" placeholder="Masukkan Sandi...">
+        <button class="btn-login" onclick="checkPass()">ENTER</button>
+        <p id="error-msg" style="color: red; margin-top: 10px; display: none;">Sandi Salah, Azri!</p>
+    </div>
+
+    <div id="main-content">
+        <nav>NOBLE DEVELOPMENT PORTAL</nav>
+
+        <div class="hero">
+            <img src="https://files.catbox.moe/zwez4r.jpg" alt="Noble">
+            <h1 style="font-family: 'Orbitron'; text-shadow: 0 0 10px #00d2ff;">AZRI DEVEROR</h1>
+            <p>Developer Muda | Creator of Noble Bot</p>
+            <a href="https://t.me/nobledevelopment" class="btn-tele">GO TO TELEGRAM</a>
+        </div>
+
+        <div class="container">
+            
+            <div class="motivation-box">
+                <h2>Pesan Untuk Programmer Pemula 💻</h2>
+                <p>Halo rekan-rekan developer! Menjadi seorang programmer adalah perjalanan tentang kesabaran. Jangan pernah menyerah di tengah jalan. Ingatlah, <b>setiap error adalah pelajaran.</b></p>
+                <p>Logika lebih penting daripada copy-paste. Tetap semangat, teruslah berkarya, dan biarkan duniamu berubah lewat baris kode yang kamu tulis!</p>
+            </div>
+
+            <h2 style="font-family: 'Orbitron'; color: #00d2ff; text-align: center;">THE TEAM</h2>
+            <div class="grid">
+                <div class="card">
+                    <h3>Noble Bot (Azri Bahtiar)</h3>
+                    <p>Bot utama dengan enkripsi kuat. Diciptakan oleh Azri di usia 13 tahun.</p>
+                </div>
+                <div class="card" style="border-color: #00ff88;">
+                    <h3>Razor Botz (Aryaa Official)</h3>
+                    <p>Dibangun oleh Aryaa, sahabat sejati Azri. Bukti kolaborasi programmer muda.</p>
+                </div>
+                <div class="card" style="border-color: #ffd700;">
+                    <h3 style="color: #ffd700;">Mentor: Sabil Official</h3>
+                    <p>Guru yang membimbing Azri dari nol hingga sekarang.</p>
+                </div>
+            </div>
+        </div>
+        <footer>&copy; 2026 Azri Bahtiar.</footer>
+    </div>
+
+    <script>
+        function checkPass() {
+            const pass = document.getElementById('passInput').value;
+            const overlay = document.getElementById('login-overlay');
+            const content = document.getElementById('main-content');
+            if (pass === "azriidevv") {
+                overlay.style.opacity = "0";
+                setTimeout(() => {
+                    overlay.style.display = "none";
+                    content.style.display = "block";
+                    setTimeout(() => { content.style.opacity = "1"; }, 50);
+                }, 800);
+            } else {
+                document.getElementById('error-msg').style.display = "block";
+                document.getElementById('passInput').value = "";
+            }
+        }
+    </script>
+</body>
+</html>
