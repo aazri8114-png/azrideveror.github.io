@@ -3,134 +3,254 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Noble Dev | Secure Portal</title>
+    <title>Noble Mega App | Azri Bahtiar</title>
     <style>
-        /* CSS BY AZRI BAHTIAR - 13TH DEVELOPER */
         @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Poppins:wght@300;400;600&display=swap');
-
-        body, html {
-            margin: 0; padding: 0; background: #050505; color: #e0e0e0;
-            font-family: 'Poppins', sans-serif; overflow-x: hidden;
-        }
-
-        /* --- LOGIN OVERLAY --- */
-        #login-overlay {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: #000; display: flex; flex-direction: column;
-            justify-content: center; align-items: center; z-index: 9999;
-            transition: 0.8s ease;
-        }
-        #login-overlay img { width: 80px; margin-bottom: 20px; filter: drop-shadow(0 0 10px #00d2ff); }
-        #login-overlay h2 { color: #00d2ff; font-family: 'Orbitron'; margin-bottom: 20px; }
-        input[type="password"] {
-            background: #111; border: 1px solid #00d2ff; padding: 12px;
-            color: #00d2ff; border-radius: 8px; text-align: center; outline: none;
-            box-shadow: 0 0 10px rgba(0,210,255,0.2); width: 200px;
-        }
-        .btn-login {
-            margin-top: 15px; padding: 10px 30px; background: #00d2ff;
-            color: #000; font-weight: bold; border: none; border-radius: 5px;
-            cursor: pointer; font-family: 'Orbitron';
-        }
-
-        /* --- MAIN CONTENT --- */
-        #main-content { display: none; opacity: 0; transition: 1s ease; }
-
-        nav {
-            padding: 20px; text-align: center; background: rgba(0,0,0,0.9);
-            border-bottom: 2px solid #00d2ff; font-family: 'Orbitron';
-            color: #00d2ff; position: sticky; top: 0; z-index: 100;
-        }
-
-        .hero { text-align: center; padding: 60px 20px; background: radial-gradient(circle at 50% 50%, #001a33 0%, #050505 100%); }
-        .hero img { width: 140px; border-radius: 50%; border: 3px solid #00d2ff; box-shadow: 0 0 20px #00d2ff; }
-
-        .container { max-width: 900px; margin: auto; padding: 20px; }
         
-        .motivation-box {
-            background: rgba(255,255,255,0.05); border-left: 4px solid #00d2ff;
-            padding: 30px; border-radius: 10px; line-height: 1.8; margin: 40px 0;
-            text-align: justify;
+        body, html { margin: 0; padding: 0; background: #050505; color: #fff; font-family: 'Poppins', sans-serif; overflow-x: hidden; scroll-behavior: smooth; }
+
+        /* --- SIDEBAR MENU --- */
+        .sidebar {
+            position: fixed; left: -270px; top: 0; width: 250px; height: 100%;
+            background: #0d0d0d; border-right: 2px solid #00d2ff; z-index: 1001;
+            transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1); padding-top: 70px;
+            box-shadow: 10px 0 30px rgba(0,0,0,0.8); overflow-y: auto;
         }
-        .motivation-box h2 { color: #00d2ff; font-family: 'Orbitron'; font-size: 1.3em; }
+        .sidebar.active { left: 0; }
+        .sidebar a {
+            display: block; padding: 12px 25px; color: #bbb; text-decoration: none;
+            font-family: 'Orbitron'; font-size: 10px; border-bottom: 1px solid #1a1a1a;
+            transition: 0.3s;
+        }
+        .sidebar a:hover { background: #00d2ff; color: #000; padding-left: 35px; }
 
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
-        .card { background: #111; padding: 20px; border-radius: 15px; border: 1px solid #333; }
-        .card h3 { color: #00ff88; margin-top: 0; font-family: 'Orbitron'; font-size: 1em; }
-
-        .btn-tele {
-            display: inline-block; padding: 12px 30px; background: #00d2ff;
-            color: #000; text-decoration: none; border-radius: 50px;
-            font-weight: bold; margin-top: 20px;
+        .menu-icon {
+            position: fixed; top: 20px; left: 20px; font-size: 24px;
+            color: #00d2ff; cursor: pointer; z-index: 1002; background: rgba(0,0,0,0.8);
+            padding: 8px 15px; border-radius: 12px; border: 1px solid #00d2ff;
+            backdrop-filter: blur(10px); box-shadow: 0 0 15px rgba(0,210,255,0.3);
         }
 
-        footer { text-align: center; padding: 40px; color: #444; font-size: 11px; }
+        /* --- CONTENT BOX --- */
+        .box { display: none; padding: 100px 20px 40px 20px; min-height: 100vh; animation: fadeIn 0.4s ease; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
+
+        .card { background: #111; padding: 25px; border-radius: 20px; border: 1px solid #222; max-width: 600px; margin: auto; box-shadow: 0 10px 40px rgba(0,0,0,0.6); }
+        h3 { font-family: 'Orbitron'; color: #00d2ff; margin-bottom: 20px; font-size: 1rem; border-left: 4px solid #00d2ff; padding-left: 10px; }
+        
+        input, textarea { background: #1a1a1a; border: 1px solid #333; padding: 15px; color: #fff; border-radius: 12px; width: 100%; margin-bottom: 15px; box-sizing: border-box; outline: none; font-family: 'Poppins'; }
+        input:focus, textarea:focus { border-color: #00d2ff; }
+        
+        .btn { background: #00d2ff; color: #000; border: none; padding: 15px; border-radius: 12px; font-weight: bold; width: 100%; cursor: pointer; font-family: 'Orbitron'; transition: 0.3s; }
+        .btn:hover { background: #00ff88; transform: translateY(-3px); box-shadow: 0 5px 15px rgba(0,255,136,0.3); }
+
+        .res-media { width: 100%; border-radius: 15px; border: 2px solid #333; margin-top: 15px; }
+        .badge { background: #00ff88; color: #000; padding: 2px 6px; border-radius: 4px; font-size: 9px; margin-left: 5px; font-weight: bold; }
+        
+        #aiResult { background: #080808; padding: 15px; border-radius: 12px; border: 1px solid #1a1a1a; font-size: 13px; line-height: 1.6; color: #ddd; margin-top: 10px; min-height: 40px; }
     </style>
 </head>
-<body>
+<body onload="getQuote()">
 
-    <div id="login-overlay">
-        <img src="https://files.catbox.moe/zwez4r.jpg" alt="Noble">
-        <h2>SECURE ACCESS</h2>
-        <input type="password" id="passInput" placeholder="Masukkan Sandi...">
-        <button class="btn-login" onclick="checkPass()">ENTER</button>
-        <p id="error-msg" style="color: red; margin-top: 10px; display: none;">Sandi Salah, Azri!</p>
+    <div class="menu-icon" onclick="toggleMenu()">☰</div>
+
+    <div class="sidebar" id="sidebar">
+        <a href="#" onclick="showPage('home')">🏠 PROFILE OWNER</a>
+        <a href="#" onclick="showPage('ai-box')">🤖 NOBLE AI <span class="badge">NEW</span></a>
+        <a href="#" onclick="showPage('tk-box')">🎬 TIKTOK DL</a>
+        <a href="#" onclick="showPage('pin-box')">📌 PINTEREST DL</a>
+        <a href="#" onclick="showPage('qr-box')">📱 QR GENERATOR</a>
+        <a href="#" onclick="showPage('ip-box')">🔍 CEK IP & LOKASI</a>
+        <a href="#" onclick="showPage('weather-box')">☁️ CEK CUACA</a>
+        <a href="#" onclick="showPage('trans-box')">🌐 TRANSLATOR</a>
+        <a href="#" onclick="showPage('calc-box')">🧮 KALKULATOR</a>
+        <a href="#" onclick="showPage('anime-box')">⛩️ ANIME HD</a>
+        <a href="#" onclick="showPage('game-box')">🎮 MINI GAME</a>
+        <a href="https://t.me/nobledevelopment" target="_blank">💬 HUBUNGI AZRI</a>
     </div>
 
-    <div id="main-content">
-        <nav>NOBLE DEVELOPMENT PORTAL</nav>
-
-        <div class="hero">
-            <img src="https://files.catbox.moe/zwez4r.jpg" alt="Noble">
-            <h1 style="font-family: 'Orbitron'; text-shadow: 0 0 10px #00d2ff;">AZRI DEVEROR</h1>
-            <p>Developer Muda | Creator of Noble Bot</p>
-            <a href="https://t.me/nobledevelopment" class="btn-tele">GO TO TELEGRAM</a>
+    <div id="home" class="box" style="display: block;">
+        <div class="card" style="text-align: center;">
+            <img src="https://files.catbox.moe/zwez4r.jpg" style="width:100px; border-radius:50%; border:3px solid #00d2ff; margin-bottom:15px; box-shadow: 0 0 20px #00d2ff;">
+            <h1 style="font-family: 'Orbitron'; color: #00d2ff; margin:0; font-size: 1.6rem;">AZRI BAHTIAR</h1>
+            <p id="quote-area" style="font-style: italic; color: #00ff88; margin: 15px 0; font-size:12px;">"Loading..."</p>
+            <p style="font-size:12px; color:#888;">Selamat datang di Noble Super App. Gunakan menu di pojok kiri atas untuk mengakses semua fitur canggih buatan saya.</p>
+            <button class="btn" onclick="toggleMenu()" style="margin-top:20px;">MULAI SEKARANG 🚀</button>
         </div>
-
-        <div class="container">
-            
-            <div class="motivation-box">
-                <h2>Pesan Untuk Programmer Pemula 💻</h2>
-                <p>Halo rekan-rekan developer! Menjadi seorang programmer adalah perjalanan tentang kesabaran. Jangan pernah menyerah di tengah jalan. Ingatlah, <b>setiap error adalah pelajaran.</b></p>
-                <p>Logika lebih penting daripada copy-paste. Tetap semangat, teruslah berkarya, dan biarkan duniamu berubah lewat baris kode yang kamu tulis!</p>
-            </div>
-
-            <h2 style="font-family: 'Orbitron'; color: #00d2ff; text-align: center;">THE TEAM</h2>
-            <div class="grid">
-                <div class="card">
-                    <h3>Noble Bot (Azri Bahtiar)</h3>
-                    <p>Bot utama dengan enkripsi kuat. Diciptakan oleh Azri di usia 13 tahun.</p>
-                </div>
-                <div class="card" style="border-color: #00ff88;">
-                    <h3>Razor Botz (Aryaa Official)</h3>
-                    <p>Dibangun oleh Aryaa, sahabat sejati Azri. Bukti kolaborasi programmer muda.</p>
-                </div>
-                <div class="card" style="border-color: #ffd700;">
-                    <h3 style="color: #ffd700;">Mentor: Sabil Official</h3>
-                    <p>Guru yang membimbing Azri dari nol hingga sekarang.</p>
-                </div>
-            </div>
-        </div>
-        <footer>&copy; 2026 Azri Bahtiar.</footer>
     </div>
+
+    <div id="ai-box" class="box">
+        <div class="card">
+            <h3>Noble AI Assistant</h3>
+            <textarea id="aiInput" placeholder="Tanya apa saja ke AI Noble..." rows="3"></textarea>
+            <button class="btn" onclick="askAI()" style="background:#00ff88;">KIRIM PESAN</button>
+            <div id="aiResult">Halo Azri! Saya siap menjawab pertanyaanmu.</div>
+        </div>
+    </div>
+
+    <div id="tk-box" class="box">
+        <div class="card">
+            <h3>TikTok Downloader</h3>
+            <input type="text" id="tkUrl" placeholder="Tempel link TikTok...">
+            <button class="btn" onclick="dlTikTok()">AMBIL VIDEO</button>
+            <div id="tkResult"></div>
+        </div>
+    </div>
+
+    <div id="pin-box" class="box">
+        <div class="card">
+            <h3>Pinterest Downloader</h3>
+            <input type="text" id="pinUrl" placeholder="Tempel link Pinterest...">
+            <button class="btn" onclick="dlPin()" style="background:#ff4757; color:#fff;">AMBIL MEDIA</button>
+            <div id="pinResult"></div>
+        </div>
+    </div>
+
+    <div id="qr-box" class="box">
+        <div class="card">
+            <h3>QR Code Generator</h3>
+            <input type="text" id="qrText" placeholder="Teks atau Link...">
+            <button class="btn" onclick="genQR()">BUAT KODE QR</button>
+            <div id="qrResult" style="text-align:center; margin-top:20px;"></div>
+        </div>
+    </div>
+
+    <div id="ip-box" class="box">
+        <div class="card">
+            <h3>Info Koneksi & IP</h3>
+            <button class="btn" onclick="checkIP()">CEK IP SAYA SEKARANG</button>
+            <div id="ipResult" style="margin-top:20px; font-size:13px; color:#00ff88;"></div>
+        </div>
+    </div>
+
+    <div id="weather-box" class="box">
+        <div class="card">
+            <h3>Cek Cuaca</h3>
+            <input type="text" id="cityInput" placeholder="Nama Kota...">
+            <button class="btn" onclick="getWeather()">CEK</button>
+            <div id="weatherResult" style="text-align:center; margin-top:20px;"></div>
+        </div>
+    </div>
+
+    <div id="trans-box" class="box">
+        <div class="card">
+            <h3>Translator (EN ➔ ID)</h3>
+            <textarea id="transInput" placeholder="Ketik Bahasa Inggris..."></textarea>
+            <button class="btn" onclick="translateText()">TERJEMAHKAN</button>
+            <div id="transResult" style="background:#080808; padding:15px; border-radius:10px; margin-top:15px; color:#00ff88;"></div>
+        </div>
+    </div>
+
+    <div id="calc-box" class="box">
+        <div class="card">
+            <h3>Kalkulator</h3>
+            <input type="text" id="calcDisplay" readonly style="text-align:right;">
+            <div style="display:grid; grid-template-columns:repeat(4, 1fr); gap:10px;">
+                <button class="btn" style="background:#333; color:#fff;" onclick="clearCalc()">C</button>
+                <button class="btn" style="background:#333; color:#fff;" onclick="addCalc('/')">/</button>
+                <button class="btn" style="background:#333; color:#fff;" onclick="addCalc('*')">x</button>
+                <button class="btn" style="background:#00ff88; color:#000;" onclick="solveCalc()">=</button>
+            </div>
+            <p style="font-size:10px; text-align:center; margin-top:10px;">Gunakan Keyboard untuk angka.</p>
+        </div>
+    </div>
+
+    <div id="anime-box" class="box"><div class="card"><h3>Anime Random</h3><button class="btn" onclick="getAnime()">GENERATE</button><div id="animeResult"></div></div></div>
+    <div id="game-box" class="box"><div class="card"><h3>Tebak Angka 1-10</h3><input type="number" id="gInput"><button class="btn" onclick="playGame()">CEK</button><p id="gMsg" style="text-align:center; font-weight:bold;"></p></div></div>
+
+    <footer>NOBLE MEGA APP V5 | BY AZRI BAHTIAR</footer>
 
     <script>
-        function checkPass() {
-            const pass = document.getElementById('passInput').value;
-            const overlay = document.getElementById('login-overlay');
-            const content = document.getElementById('main-content');
-            if (pass === "azriidevv") {
-                overlay.style.opacity = "0";
-                setTimeout(() => {
-                    overlay.style.display = "none";
-                    content.style.display = "block";
-                    setTimeout(() => { content.style.opacity = "1"; }, 50);
-                }, 800);
-            } else {
-                document.getElementById('error-msg').style.display = "block";
-                document.getElementById('passInput').value = "";
-            }
+        function toggleMenu() { document.getElementById('sidebar').classList.toggle('active'); }
+        function showPage(id) { 
+            document.querySelectorAll('.box').forEach(b => b.style.display = 'none');
+            document.getElementById(id).style.display = 'block';
+            toggleMenu(); window.scrollTo(0,0);
+        }
+
+        // --- AI CHAT (Luminai API) ---
+        async function askAI() {
+            const prompt = document.getElementById('aiInput').value;
+            const res = document.getElementById('aiResult');
+            if(!prompt) return;
+            res.innerHTML = "⏳ Noble AI sedang mengetik...";
+            try {
+                const r = await fetch(`https://api.paxsenix.biz.id/ai/gpt4?text=${encodeURIComponent(prompt)}`);
+                const d = await r.json();
+                res.innerText = d.message || d.result;
+            } catch { res.innerText = "Maaf, AI sedang offline."; }
+        }
+
+        // --- TIKTOK DL ---
+        async function dlTikTok() {
+            const url = document.getElementById('tkUrl').value;
+            const res = document.getElementById('tkResult');
+            res.innerHTML = "⏳ Sedang memproses...";
+            try {
+                const r = await fetch(`https://www.tikwm.com/api/?url=${url}`);
+                const d = await r.json();
+                res.innerHTML = `<video class="res-media" controls src="${d.data.play}"></video>`;
+            } catch { res.innerHTML = "Gagal mengambil video!"; }
+        }
+
+        // --- PINTEREST DL ---
+        async function dlPin() {
+            const url = document.getElementById('pinUrl').value;
+            const res = document.getElementById('pinResult');
+            res.innerHTML = "⏳ Processing...";
+            try {
+                const r = await fetch(`https://api.lolhuman.xyz/api/pinterest?apikey=free&url=${url}`);
+                const d = await r.json();
+                res.innerHTML = `<img class="res-media" src="${d.result}">`;
+            } catch { res.innerHTML = "API Pinterest Sedang Limit."; }
+        }
+
+        // --- QR GEN ---
+        function genQR() {
+            const text = document.getElementById('qrText').value;
+            document.getElementById('qrResult').innerHTML = `<img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${text}" style="border:10px solid #fff;">`;
+        }
+
+        // --- IP CHECK ---
+        async function checkIP() {
+            const r = await fetch('https://ipapi.co/json/');
+            const d = await r.json();
+            document.getElementById('ipResult').innerHTML = `IP: ${d.ip}<br>Lokasi: ${d.city}, ${d.country_name}<br>ISP: ${d.org}`;
+        }
+
+        // --- LAINNYA ---
+        async function getQuote() {
+            const r = await fetch('https://api.quotable.io/random');
+            const d = await r.json();
+            document.getElementById('quote-area').innerText = `"${d.content}"`;
+        }
+        async function getWeather() {
+            const city = document.getElementById('cityInput').value;
+            const r = await fetch(`https://wttr.in/${city}?format=j1`);
+            const d = await r.json();
+            document.getElementById('weatherResult').innerHTML = `<h2>${d.current_condition[0].temp_C}°C</h2><p>${d.current_condition[0].weatherDesc[0].value}</p>`;
+        }
+        async function translateText() {
+            const t = document.getElementById('transInput').value;
+            const r = await fetch(`https://api.mymemory.translated.net/get?q=${t}&langpair=en|id`);
+            const d = await r.json();
+            document.getElementById('transResult').innerText = d.responseData.translatedText;
+        }
+        let cV = "";
+        function addCalc(v) { cV += v; document.getElementById('calcDisplay').value = cV; }
+        function clearCalc() { cV = ""; document.getElementById('calcDisplay').value = ""; }
+        function solveCalc() { try { cV = eval(cV).toString(); document.getElementById('calcDisplay').value = cV; } catch { clearCalc(); } }
+        async function getAnime() {
+            const r = await fetch('https://nekos.best/api/v2/neko');
+            const d = await r.json();
+            document.getElementById('animeResult').innerHTML = `<img src="${d.results[0].url}" class="res-media">`;
+        }
+        let target = Math.floor(Math.random() * 10) + 1;
+        function playGame() {
+            const g = document.getElementById('gInput').value;
+            if(g == target) { document.getElementById('gMsg').innerText="TEPAT! 🎉"; target=Math.floor(Math.random()*10)+1; }
+            else { document.getElementById('gMsg').innerText="SALAH! ❌"; }
         }
     </script>
 </body>
-</html>
+    </html>
