@@ -2,8 +2,8 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>Noble Central Hub | Azri Bahtiar - Ultimate Tools</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Noble Mega App | Azri Bahtiar</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Poppins:wght@300;400;600&display=swap');
         
@@ -32,1219 +32,225 @@
         }
 
         /* --- CONTENT BOX --- */
-        .box { display: none; padding: 100px 20px 40px 20px; min-height: 100vh; animation: fadeIn 0.4s; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        .box { display: none; padding: 100px 20px 40px 20px; min-height: 100vh; animation: fadeIn 0.4s ease; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
 
-        .container { max-width: 800px; margin: auto; }
-        h1 { font-family: 'Orbitron'; color: #00d2ff; text-align: center; text-shadow: 0 0 15px #00d2ff; margin-bottom: 5px; }
-        .sub-header { text-align: center; color: #888; font-size: 12px; margin-bottom: 30px; }
-
-        /* GRID CARDS */
-        .grid { display: grid; grid-template-columns: 1fr; gap: 20px; }
-        @media(min-width: 600px) { .grid { grid-template-columns: 1fr 1fr; } }
-
-        .card { background: #111; border: 1px solid #222; padding: 25px; border-radius: 20px; box-shadow: 0 10px 40px rgba(0,0,0,0.6); }
-        .card h3 { font-family: 'Orbitron'; color: #00ff88; font-size: 14px; margin-top: 0; display: flex; align-items: center; gap: 10px; }
+        .card { background: #111; padding: 25px; border-radius: 20px; border: 1px solid #222; max-width: 600px; margin: auto; box-shadow: 0 10px 40px rgba(0,0,0,0.6); }
+        h3 { font-family: 'Orbitron'; color: #00d2ff; margin-bottom: 20px; font-size: 1rem; border-left: 4px solid #00d2ff; padding-left: 10px; }
         
-        /* TOOLS UI */
-        input, textarea, select { background: #1a1a1a; border: 1px solid #333; padding: 15px; color: #fff; border-radius: 12px; width: 100%; margin-bottom: 15px; box-sizing: border-box; outline: none; font-family: 'Poppins'; }
+        input, textarea { background: #1a1a1a; border: 1px solid #333; padding: 15px; color: #fff; border-radius: 12px; width: 100%; margin-bottom: 15px; box-sizing: border-box; outline: none; font-family: 'Poppins'; }
+        input:focus, textarea:focus { border-color: #00d2ff; }
+        
         .btn { background: #00d2ff; color: #000; border: none; padding: 15px; border-radius: 12px; font-weight: bold; width: 100%; cursor: pointer; font-family: 'Orbitron'; transition: 0.3s; }
-        .btn:hover { background: #00ff88; transform: translateY(-3px); }
-        .btn-danger { background: #ff4757; }
-        .btn-danger:hover { background: #ff6b81; }
-        .btn-warning { background: #ffa502; }
-        .btn-warning:hover { background: #ffbe76; }
-
-        /* STATUS BADGE */
-        .status { display: inline-block; padding: 2px 10px; border-radius: 20px; font-size: 10px; font-weight: bold; }
-        .online { background: #00ff88; color: #000; }
-        .offline { background: #ff4757; color: #fff; }
+        .btn:hover { background: #00ff88; transform: translateY(-3px); box-shadow: 0 5px 15px rgba(0,255,136,0.3); }
 
         .res-media { width: 100%; border-radius: 15px; border: 2px solid #333; margin-top: 15px; }
-        pre { background: #000; padding: 10px; border-radius: 8px; font-size: 12px; overflow-x: auto; color: #00d2ff; border: 1px solid #111; }
+        .badge { background: #00ff88; color: #000; padding: 2px 6px; border-radius: 4px; font-size: 9px; margin-left: 5px; font-weight: bold; }
         
-        /* Additional styles */
-        .quality-btn { background: #1a1a1a; padding: 10px; margin: 5px; border-radius: 8px; border: 1px solid #00d2ff; cursor: pointer; transition: 0.2s; }
-        .quality-btn:hover { background: #00d2ff; color: #000; }
-        .progress-bar { height: 4px; background: #333; border-radius: 2px; overflow: hidden; margin-top: 10px; }
-        .progress-fill { height: 100%; background: #00ff88; width: 0%; transition: width 0.3s; }
-        .toast { position: fixed; bottom: 20px; right: 20px; background: #00d2ff; color: #000; padding: 10px 20px; border-radius: 8px; z-index: 2000; animation: fadeInOut 3s; }
-        @keyframes fadeInOut { 0% { opacity: 0; transform: translateX(100%); } 10% { opacity: 1; transform: translateX(0); } 90% { opacity: 1; transform: translateX(0); } 100% { opacity: 0; transform: translateX(100%); } }
-        .loader { display: inline-block; width: 20px; height: 20px; border: 2px solid #fff; border-radius: 50%; border-top-color: #00d2ff; animation: spin 1s linear infinite; }
-        @keyframes spin { to { transform: rotate(360deg); } }
-        
-        /* Download quality buttons */
-        .download-options { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 15px; }
-        .quality-option { background: linear-gradient(135deg, #1a1a1a, #2a2a2a); padding: 12px 20px; border-radius: 10px; border: 1px solid #00d2ff; cursor: pointer; transition: 0.2s; flex: 1; text-align: center; }
-        .quality-option:hover { background: #00d2ff; color: #000; transform: scale(1.02); }
-        .quality-option i { margin-right: 8px; }
+        #aiResult { background: #080808; padding: 15px; border-radius: 12px; border: 1px solid #1a1a1a; font-size: 13px; line-height: 1.6; color: #ddd; margin-top: 10px; min-height: 40px; }
     </style>
 </head>
-<body onload="getQuote(); getVisitorCount(); startCountdown();">
+<body onload="getQuote()">
 
     <div class="menu-icon" onclick="toggleMenu()">☰</div>
 
     <div class="sidebar" id="sidebar">
-        <a href="#" onclick="showPage('home')">🏠 NOBLE CENTRAL</a>
-        <a href="#" onclick="showPage('ai-box')">🤖 NOBLE AI <span style="background:#00ff88;color:#000;padding:2px 5px;border-radius:4px;font-size:9px;">HOT</span></a>
-        <a href="#" onclick="showPage('youtube-box')">🎬 YOUTUBE DL</a>
+        <a href="#" onclick="showPage('home')">🏠 PROFILE OWNER</a>
+        <a href="#" onclick="showPage('ai-box')">🤖 NOBLE AI <span class="badge">NEW</span></a>
         <a href="#" onclick="showPage('tk-box')">🎬 TIKTOK DL</a>
-        <a href="#" onclick="showPage('instagram-box')">📸 INSTAGRAM DL</a>
-        <a href="#" onclick="showPage('facebook-box')">📘 FACEBOOK DL</a>
-        <a href="#" onclick="showPage('twitter-box')">🐦 TWITTER DL</a>
         <a href="#" onclick="showPage('pin-box')">📌 PINTEREST DL</a>
-        <a href="#" onclick="showPage('mediafire-box')">📦 MEDIAFIRE DL</a>
         <a href="#" onclick="showPage('qr-box')">📱 QR GENERATOR</a>
-        <a href="#" onclick="showPage('ip-box')">🔍 CEK IP</a>
+        <a href="#" onclick="showPage('ip-box')">🔍 CEK IP & LOKASI</a>
         <a href="#" onclick="showPage('weather-box')">☁️ CEK CUACA</a>
+        <a href="#" onclick="showPage('trans-box')">🌐 TRANSLATOR</a>
         <a href="#" onclick="showPage('calc-box')">🧮 KALKULATOR</a>
         <a href="#" onclick="showPage('anime-box')">⛩️ ANIME HD</a>
         <a href="#" onclick="showPage('game-box')">🎮 MINI GAME</a>
-        <a href="#" onclick="showPage('sticker-box')">✨ STICKER MAKER</a>
-        <a href="#" onclick="showPage('text-box')">📝 TEXT TOOLS</a>
-        <a href="#" onclick="showPage('image-box')">🖼️ IMAGE EDITOR</a>
-        <a href="#" onclick="showPage('converter-box')">🔄 UNIT CONVERTER</a>
-        <a href="#" onclick="showPage('password-box')">🔐 PASSWORD GEN</a>
-        <a href="#" onclick="showPage('shortlink-box')">🔗 SHORT LINK</a>
-        <a href="#" onclick="showPage('qrcode-box')">📷 SCAN QR</a>
-        <a href="#" onclick="showPage('bmi-box')">⚖️ BMI CALC</a>
-        <a href="#" onclick="showPage('age-box')">🎂 AGE CALC</a>
-        <a href="#" onclick="showPage('color-box')">🎨 COLOR PICKER</a>
-        <a href="#" onclick="showPage('notes-box')">📋 NOTES</a>
-        <a href="#" onclick="showPage('todo-box')">✅ TO-DO LIST</a>
-        <a href="#" onclick="showPage('countdown-box')">⏰ COUNTDOWN</a>
-        <a href="#" onclick="showPage('stopwatch-box')">⏱️ STOPWATCH</a>
-        <a href="#" onclick="showPage('random-box')">🎲 RANDOM USER</a>
-        <a href="#" onclick="showPage('donate-box')">💝 DONATE</a>
-        <a href="#" onclick="showPage('about-box')">ℹ️ ABOUT</a>
+        <a href="https://t.me/nobledevelopment" target="_blank">💬 HUBUNGI AZRI</a>
     </div>
 
-    <!-- HOME PAGE -->
     <div id="home" class="box" style="display: block;">
-        <div class="container">
-            <h1>NOBLE CENTRAL</h1>
-            <div class="sub-header">Management System v2.0 by Azri Bahtiar</div>
-            
-            <div class="grid">
-                <div class="card">
-                    <h3>📂 NOBLE CLOUD</h3>
-                    <p style="font-size:11px; color:#888;">Upload gambar/file ke CDN instan.</p>
-                    <div style="border: 2px dashed #333; padding: 20px; text-align: center; border-radius: 10px; cursor: pointer;" onclick="document.getElementById('fileInput').click()">
-                        <span id="fileStatus">Klik untuk Pilih File</span>
-                        <input type="file" id="fileInput" hidden onchange="uploadFile()">
-                    </div>
-                    <div id="urlResult" style="margin-top:10px; font-size:11px; word-break: break-all; color:#00ff88;"></div>
-                </div>
-
-                <div class="card">
-                    <h3>🖥️ SERVER STATUS</h3>
-                    <div style="font-size:12px; line-height: 2;">
-                        Noble Bot: <span class="status online">ONLINE</span><br>
-                        VPS Singapore: <span class="status online">RUNNING</span><br>
-                        Pterodactyl Node: <span class="status online">ACTIVE</span><br>
-                        <span id="visitorCount">👥 Visitor: Loading...</span>
-                    </div>
-                    <hr style="border-top:1px solid #222; margin: 15px 0;">
-                    <div style="font-size:11px; color:#00d2ff; margin-bottom: 15px;">
-                        RAM 1GB: Rp 5.000<br>
-                        RAM 2GB: Rp 10.000
-                    </div>
-                    <button class="btn" onclick="window.open('https://t.me/nobledevelopment')">BUY PANEL</button>
-                </div>
-            </div>
-
-            <div style="margin-top: 30px; text-align: center; background: rgba(0, 210, 255, 0.05); padding: 15px; border-radius: 15px; border: 1px solid #00d2ff;">
-                <p style="font-size: 11px; color: #00d2ff; margin: 0;">
-                    💡 Ketik <b>titik tiga (☰)</b> di kiri atas untuk menampilkan menu & fitur canggih web Noble.
-                </p>
-            </div>
+        <div class="card" style="text-align: center;">
+            <img src="https://files.catbox.moe/zwez4r.jpg" style="width:100px; border-radius:50%; border:3px solid #00d2ff; margin-bottom:15px; box-shadow: 0 0 20px #00d2ff;">
+            <h1 style="font-family: 'Orbitron'; color: #00d2ff; margin:0; font-size: 1.6rem;">AZRI BAHTIAR</h1>
+            <p id="quote-area" style="font-style: italic; color: #00ff88; margin: 15px 0; font-size:12px;">"Loading..."</p>
+            <p style="font-size:12px; color:#888;">Selamat datang di Noble Super App. Gunakan menu di pojok kiri atas untuk mengakses semua fitur canggih buatan saya.</p>
+            <button class="btn" onclick="toggleMenu()" style="margin-top:20px;">MULAI SEKARANG 🚀</button>
         </div>
     </div>
 
-    <!-- AI BOX -->
     <div id="ai-box" class="box">
         <div class="card">
-            <h3>🤖 Noble AI Assistant</h3>
-            <textarea id="aiInput" placeholder="Tanya apa saja..." rows="3"></textarea>
-            <button class="btn" onclick="askAI()">KIRIM</button>
-            <div id="aiResult" style="background:#080808; padding:15px; border-radius:12px; border:1px solid #222; font-size:13px; margin-top:15px; color:#ddd;">Halo Azri!</div>
+            <h3>Noble AI Assistant</h3>
+            <textarea id="aiInput" placeholder="Tanya apa saja ke AI Noble..." rows="3"></textarea>
+            <button class="btn" onclick="askAI()" style="background:#00ff88;">KIRIM PESAN</button>
+            <div id="aiResult">Halo Azri! Saya siap menjawab pertanyaanmu.</div>
         </div>
     </div>
 
-    <!-- YOUTUBE DL - UPDATED WITH API KEY -->
-    <div id="youtube-box" class="box">
-        <div class="card">
-            <h3>🎬 YouTube Downloader Pro</h3>
-            <input type="text" id="ytUrl" placeholder="https://youtu.be/... atau https://www.youtube.com/watch?v=...">
-            <button class="btn" onclick="dlYouTube()">PROSES & DOWNLOAD</button>
-            <div id="ytResult" style="margin-top:15px;"></div>
-        </div>
-    </div>
-
-    <!-- TIKTOK DL -->
     <div id="tk-box" class="box">
         <div class="card">
-            <h3>🎬 TikTok Downloader</h3>
-            <input type="text" id="tkUrl" placeholder="https://vt.tiktok.com/... atau https://www.tiktok.com/@.../video/...">
-            <button class="btn" onclick="dlTikTok()">PROSES</button>
+            <h3>TikTok Downloader</h3>
+            <input type="text" id="tkUrl" placeholder="Tempel link TikTok...">
+            <button class="btn" onclick="dlTikTok()">AMBIL VIDEO</button>
             <div id="tkResult"></div>
         </div>
     </div>
 
-    <!-- INSTAGRAM DL -->
-    <div id="instagram-box" class="box">
-        <div class="card">
-            <h3>📸 Instagram Downloader</h3>
-            <input type="text" id="igUrl" placeholder="https://www.instagram.com/p/... atau https://www.instagram.com/reel/...">
-            <button class="btn" onclick="dlInstagram()">PROSES</button>
-            <div id="igResult"></div>
-        </div>
-    </div>
-
-    <!-- FACEBOOK DL -->
-    <div id="facebook-box" class="box">
-        <div class="card">
-            <h3>📘 Facebook Downloader</h3>
-            <input type="text" id="fbUrl" placeholder="https://www.facebook.com/watch/?v=... atau https://fb.watch/...">
-            <button class="btn" onclick="dlFacebook()">PROSES</button>
-            <div id="fbResult"></div>
-        </div>
-    </div>
-
-    <!-- TWITTER DL -->
-    <div id="twitter-box" class="box">
-        <div class="card">
-            <h3>🐦 Twitter/X Downloader</h3>
-            <input type="text" id="twUrl" placeholder="https://twitter.com/.../status/... atau https://x.com/...">
-            <button class="btn" onclick="dlTwitter()">PROSES</button>
-            <div id="twResult"></div>
-        </div>
-    </div>
-
-    <!-- PINTEREST DL -->
     <div id="pin-box" class="box">
         <div class="card">
-            <h3>📌 Pinterest Downloader</h3>
-            <input type="text" id="pinUrl" placeholder="https://pin.it/... atau https://www.pinterest.com/pin/...">
-            <button class="btn" onclick="dlPin()">PROSES</button>
+            <h3>Pinterest Downloader</h3>
+            <input type="text" id="pinUrl" placeholder="Tempel link Pinterest...">
+            <button class="btn" onclick="dlPin()" style="background:#ff4757; color:#fff;">AMBIL MEDIA</button>
             <div id="pinResult"></div>
         </div>
     </div>
 
-    <!-- MEDIAFIRE DL -->
-    <div id="mediafire-box" class="box">
-        <div class="card">
-            <h3>📦 MediaFire Downloader</h3>
-            <input type="text" id="mfUrl" placeholder="https://www.mediafire.com/file/...">
-            <button class="btn" onclick="dlMediafire()">PROSES</button>
-            <div id="mfResult"></div>
-        </div>
-    </div>
-
-    <!-- QR GENERATOR -->
     <div id="qr-box" class="box">
         <div class="card">
-            <h3>📱 QR Code Generator</h3>
-            <input type="text" id="qrText" placeholder="Masukkan teks atau URL...">
-            <button class="btn" onclick="genQR()">GENERATE</button>
-            <div id="qrResult" style="text-align:center; margin-top:15px;"></div>
+            <h3>QR Code Generator</h3>
+            <input type="text" id="qrText" placeholder="Teks atau Link...">
+            <button class="btn" onclick="genQR()">BUAT KODE QR</button>
+            <div id="qrResult" style="text-align:center; margin-top:20px;"></div>
         </div>
     </div>
 
-    <!-- CEK IP -->
     <div id="ip-box" class="box">
         <div class="card">
-            <h3>🔍 Cek IP Address</h3>
-            <button class="btn" onclick="checkIP()">CEK IP SAYA</button>
-            <button class="btn btn-warning" onclick="checkOtherIP()" style="margin-top:10px;">CEK IP LAIN</button>
-            <div id="ipResult" style="margin-top:15px;"></div>
+            <h3>Info Koneksi & IP</h3>
+            <button class="btn" onclick="checkIP()">CEK IP SAYA SEKARANG</button>
+            <div id="ipResult" style="margin-top:20px; font-size:13px; color:#00ff88;"></div>
         </div>
     </div>
 
-    <!-- CEK CUACA -->
     <div id="weather-box" class="box">
         <div class="card">
-            <h3>☁️ Cek Cuaca</h3>
-            <input type="text" id="cityInput" placeholder="Nama kota (contoh: Jakarta)">
+            <h3>Cek Cuaca</h3>
+            <input type="text" id="cityInput" placeholder="Nama Kota...">
             <button class="btn" onclick="getWeather()">CEK</button>
-            <div id="weatherResult"></div>
+            <div id="weatherResult" style="text-align:center; margin-top:20px;"></div>
         </div>
     </div>
 
-    <!-- KALKULATOR -->
+    <div id="trans-box" class="box">
+        <div class="card">
+            <h3>Translator (EN ➔ ID)</h3>
+            <textarea id="transInput" placeholder="Ketik Bahasa Inggris..."></textarea>
+            <button class="btn" onclick="translateText()">TERJEMAHKAN</button>
+            <div id="transResult" style="background:#080808; padding:15px; border-radius:10px; margin-top:15px; color:#00ff88;"></div>
+        </div>
+    </div>
+
     <div id="calc-box" class="box">
         <div class="card">
-            <h3>🧮 Kalkulator Ilmiah</h3>
-            <input type="text" id="calcDisplay" readonly placeholder="0">
-            <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px;">
-                <button class="btn" onclick="calcAppend('7')">7</button>
-                <button class="btn" onclick="calcAppend('8')">8</button>
-                <button class="btn" onclick="calcAppend('9')">9</button>
-                <button class="btn btn-danger" onclick="calcClear()">C</button>
-                <button class="btn" onclick="calcAppend('4')">4</button>
-                <button class="btn" onclick="calcAppend('5')">5</button>
-                <button class="btn" onclick="calcAppend('6')">6</button>
-                <button class="btn" onclick="calcAppend('/')">/</button>
-                <button class="btn" onclick="calcAppend('1')">1</button>
-                <button class="btn" onclick="calcAppend('2')">2</button>
-                <button class="btn" onclick="calcAppend('3')">3</button>
-                <button class="btn" onclick="calcAppend('*')">×</button>
-                <button class="btn" onclick="calcAppend('0')">0</button>
-                <button class="btn" onclick="calcAppend('.')">.</button>
-                <button class="btn" onclick="calcAppend('-')">-</button>
-                <button class="btn" onclick="calcAppend('+')">+</button>
-                <button class="btn btn-warning" onclick="calcSqrt()">√</button>
-                <button class="btn btn-warning" onclick="calcPow2()">x²</button>
-                <button class="btn btn-warning" onclick="calcPercent()">%</button>
-                <button class="btn" onclick="solveCalc()">=</button>
+            <h3>Kalkulator</h3>
+            <input type="text" id="calcDisplay" readonly style="text-align:right;">
+            <div style="display:grid; grid-template-columns:repeat(4, 1fr); gap:10px;">
+                <button class="btn" style="background:#333; color:#fff;" onclick="clearCalc()">C</button>
+                <button class="btn" style="background:#333; color:#fff;" onclick="addCalc('/')">/</button>
+                <button class="btn" style="background:#333; color:#fff;" onclick="addCalc('*')">x</button>
+                <button class="btn" style="background:#00ff88; color:#000;" onclick="solveCalc()">=</button>
             </div>
+            <p style="font-size:10px; text-align:center; margin-top:10px;">Gunakan Keyboard untuk angka.</p>
         </div>
     </div>
 
-    <!-- ANIME HD -->
-    <div id="anime-box" class="box">
-        <div class="card">
-            <h3>⛩️ Random Anime HD</h3>
-            <button class="btn" onclick="getAnime()">GENERATE</button>
-            <div id="animeResult"></div>
-        </div>
-    </div>
+    <div id="anime-box" class="box"><div class="card"><h3>Anime Random</h3><button class="btn" onclick="getAnime()">GENERATE</button><div id="animeResult"></div></div></div>
+    <div id="game-box" class="box"><div class="card"><h3>Tebak Angka 1-10</h3><input type="number" id="gInput"><button class="btn" onclick="playGame()">CEK</button><p id="gMsg" style="text-align:center; font-weight:bold;"></p></div></div>
 
-    <!-- MINI GAME -->
-    <div id="game-box" class="box">
-        <div class="card">
-            <h3>🎮 Tebak Angka</h3>
-            <p style="font-size:12px;">Saya sudah memilih angka 1-100! Coba tebak!</p>
-            <input type="number" id="gInput" placeholder="Masukkan angka...">
-            <button class="btn" onclick="playGame()">CEK</button>
-            <p id="gMsg" style="margin-top:15px;"></p>
-            <button class="btn btn-warning" onclick="resetGame()">RESET GAME</button>
-        </div>
-    </div>
-
-    <!-- STICKER MAKER -->
-    <div id="sticker-box" class="box">
-        <div class="card">
-            <h3>✨ Sticker Maker</h3>
-            <p style="font-size:12px;">Ubah gambar menjadi stiker WhatsApp</p>
-            <input type="file" id="stickerInput" accept="image/*">
-            <button class="btn" onclick="makeSticker()">BUAT STIKER</button>
-            <div id="stickerResult"></div>
-        </div>
-    </div>
-
-    <!-- TEXT TOOLS -->
-    <div id="text-box" class="box">
-        <div class="card">
-            <h3>📝 Text Tools</h3>
-            <textarea id="textInput" placeholder="Masukkan teks..." rows="3"></textarea>
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
-                <button class="btn" onclick="toUpperCase()">UPPERCASE</button>
-                <button class="btn" onclick="toLowerCase()">lowercase</button>
-                <button class="btn" onclick="reverseText()">Reverse</button>
-                <button class="btn" onclick="countChars()">Count Chars</button>
-                <button class="btn" onclick="toAlay()">Alay Mode</button>
-                <button class="btn" onclick="toBinary()">To Binary</button>
-            </div>
-            <div id="textResult" style="margin-top:15px; background:#080808; padding:15px; border-radius:12px;"></div>
-        </div>
-    </div>
-
-    <!-- IMAGE EDITOR -->
-    <div id="image-box" class="box">
-        <div class="card">
-            <h3>🖼️ Image Editor</h3>
-            <input type="file" id="imageInput" accept="image/*">
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 15px;">
-                <button class="btn" onclick="compressImage()">Compress</button>
-                <button class="btn" onclick="toGrayscale()">Grayscale</button>
-                <button class="btn" onclick="toSepia()">Sepia</button>
-                <button class="btn" onclick="rotateImage()">Rotate</button>
-            </div>
-            <div id="imageResult" style="margin-top:15px;"></div>
-        </div>
-    </div>
-
-    <!-- UNIT CONVERTER -->
-    <div id="converter-box" class="box">
-        <div class="card">
-            <h3>🔄 Unit Converter</h3>
-            <input type="number" id="convValue" placeholder="Nilai">
-            <select id="convFrom">
-                <option value="cm">Cm</option>
-                <option value="m">Meter</option>
-                <option value="km">Km</option>
-                <option value="inch">Inch</option>
-                <option value="feet">Feet</option>
-            </select>
-            <span>→</span>
-            <select id="convTo">
-                <option value="cm">Cm</option>
-                <option value="m">Meter</option>
-                <option value="km">Km</option>
-                <option value="inch">Inch</option>
-                <option value="feet">Feet</option>
-            </select>
-            <button class="btn" onclick="convertUnit()">KONVERSI</button>
-            <div id="convResult" style="margin-top:15px;"></div>
-        </div>
-    </div>
-
-    <!-- PASSWORD GENERATOR -->
-    <div id="password-box" class="box">
-        <div class="card">
-            <h3>🔐 Password Generator</h3>
-            <input type="number" id="passLength" placeholder="Panjang password (8-32)" value="12">
-            <div>
-                <label><input type="checkbox" id="useUpper" checked> Huruf Besar (A-Z)</label><br>
-                <label><input type="checkbox" id="useLower" checked> Huruf Kecil (a-z)</label><br>
-                <label><input type="checkbox" id="useNumbers" checked> Angka (0-9)</label><br>
-                <label><input type="checkbox" id="useSymbols" checked> Simbol (!@#$%)</label>
-            </div>
-            <button class="btn" onclick="generatePassword()">GENERATE</button>
-            <div id="passwordResult" style="margin-top:15px; font-family: monospace; font-size:16px;"></div>
-        </div>
-    </div>
-
-    <!-- SHORT LINK -->
-    <div id="shortlink-box" class="box">
-        <div class="card">
-            <h3>🔗 Short Link Generator</h3>
-            <input type="url" id="longUrl" placeholder="https://example.com/very/long/url...">
-            <button class="btn" onclick="shortenUrl()">SHORTEN</button>
-            <div id="shortResult" style="margin-top:15px;"></div>
-        </div>
-    </div>
-
-    <!-- SCAN QR -->
-    <div id="qrcode-box" class="box">
-        <div class="card">
-            <h3>📷 Scan QR Code</h3>
-            <input type="file" id="qrScanInput" accept="image/*">
-            <button class="btn" onclick="scanQR()">SCAN QR</button>
-            <div id="qrScanResult" style="margin-top:15px;"></div>
-        </div>
-    </div>
-
-    <!-- BMI CALCULATOR -->
-    <div id="bmi-box" class="box">
-        <div class="card">
-            <h3>⚖️ Kalkulator BMI</h3>
-            <input type="number" id="weight" placeholder="Berat (kg)">
-            <input type="number" id="height" placeholder="Tinggi (cm)">
-            <button class="btn" onclick="calculateBMI()">HITUNG BMI</button>
-            <div id="bmiResult" style="margin-top:15px;"></div>
-        </div>
-    </div>
-
-    <!-- AGE CALCULATOR -->
-    <div id="age-box" class="box">
-        <div class="card">
-            <h3>🎂 Kalkulator Umur</h3>
-            <input type="date" id="birthDate">
-            <button class="btn" onclick="calculateAge()">HITUNG UMUR</button>
-            <div id="ageResult" style="margin-top:15px;"></div>
-        </div>
-    </div>
-
-    <!-- COLOR PICKER -->
-    <div id="color-box" class="box">
-        <div class="card">
-            <h3>🎨 Color Picker</h3>
-            <input type="color" id="colorPicker" value="#00d2ff">
-            <div id="colorDisplay" style="height: 100px; border-radius: 12px; margin-top: 15px; background: #00d2ff;"></div>
-            <p id="colorCode">#00d2ff</p>
-            <button class="btn" onclick="copyColor()">COPY COLOR</button>
-        </div>
-    </div>
-
-    <!-- NOTES -->
-    <div id="notes-box" class="box">
-        <div class="card">
-            <h3>📋 Catatan Saya</h3>
-            <textarea id="noteInput" placeholder="Tulis catatan..." rows="3"></textarea>
-            <button class="btn" onclick="addNote()">TAMBAH CATATAN</button>
-            <div id="notesList" style="margin-top:15px;"></div>
-        </div>
-    </div>
-
-    <!-- TO-DO LIST -->
-    <div id="todo-box" class="box">
-        <div class="card">
-            <h3>✅ To-Do List</h3>
-            <input type="text" id="todoInput" placeholder="Tugas baru...">
-            <button class="btn" onclick="addTodo()">TAMBAH</button>
-            <div id="todoList" style="margin-top:15px;"></div>
-        </div>
-    </div>
-
-    <!-- COUNTDOWN TIMER -->
-    <div id="countdown-box" class="box">
-        <div class="card">
-            <h3>⏰ Countdown Timer</h3>
-            <input type="datetime-local" id="countdownDate">
-            <button class="btn" onclick="startCountdown()">MULAI</button>
-            <div id="countdownDisplay" style="font-size: 24px; text-align: center; margin-top: 15px;"></div>
-        </div>
-    </div>
-
-    <!-- STOPWATCH -->
-    <div id="stopwatch-box" class="box">
-        <div class="card">
-            <h3>⏱️ Stopwatch</h3>
-            <div id="stopwatchDisplay" style="font-size: 36px; text-align: center; font-family: monospace;">00:00:00</div>
-            <div style="display: flex; gap: 10px;">
-                <button class="btn" onclick="stopwatchStart()">START</button>
-                <button class="btn btn-danger" onclick="stopwatchStop()">STOP</button>
-                <button class="btn btn-warning" onclick="stopwatchReset()">RESET</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- RANDOM USER -->
-    <div id="random-box" class="box">
-        <div class="card">
-            <h3>🎲 Random User Generator</h3>
-            <button class="btn" onclick="getRandomUser()">GENERATE</button>
-            <div id="randomUserResult" style="margin-top:15px;"></div>
-        </div>
-    </div>
-
-    <!-- DONATE -->
-    <div id="donate-box" class="box">
-        <div class="card">
-            <h3>💝 Donate</h3>
-            <p>Support Noble Development</p>
-            <div style="text-align: center;">
-                <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://t.me/nobledevelopment" alt="QR Donate" style="border-radius: 15px;">
-                <p style="margin-top: 15px;">Scan QR atau transfer ke:</p>
-                <p><strong>DANA: 0838-9382-3950</strong></p>
-                <p><strong>GOPAY: 0838-9382-3950</strong></p>
-                <button class="btn" onclick="window.open('https://t.me/nobledevelopment')">KONTAK ADMIN</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- ABOUT -->
-    <div id="about-box" class="box">
-        <div class="card">
-            <h3>ℹ️ About Noble Central</h3>
-            <p>Version: 2.0 Ultimate</p>
-            <p>Developer: Azri Bahtiar (Noble Development)</p>
-            <p>Fitur: 30+ Tools Lengkap</p>
-            <p>Support: YouTube, TikTok, IG, FB, Twitter, Pinterest, MediaFire</p>
-            <p>API By: Noble API & Public APIs</p>
-            <hr style="margin: 15px 0;">
-            <p>Contact: <a href="https://t.me/nobledevelopment" style="color:#00d2ff;">@nobledevelopment</a></p>
-            <button class="btn" onclick="window.open('https://t.me/nobledevelopment')">JOIN CHANNEL</button>
-        </div>
-    </div>
-
-    <footer style="text-align:center; padding:40px; font-size:10px; color:#444; font-family:'Orbitron';">NOBLE ULTIMATE V6 - All Tools Working</footer>
+    <footer>NOBLE MEGA APP V5 | BY AZRI BAHTIAR</footer>
 
     <script>
-        // ==================== API KEYS ====================
-        const RAPIDAPI_KEY = 'c2bea7e104msh9b60ae6f00148f2p1103b4jsnaf1b0a876348';
-        
-        // ==================== VARIABEL GLOBAL ====================
-        let gameNumber = Math.floor(Math.random() * 100) + 1;
-        let stopwatchInterval = null;
-        let stopwatchTime = 0;
-        let countdownInterval = null;
-        let notes = JSON.parse(localStorage.getItem('noble_notes') || '[]');
-        let todos = JSON.parse(localStorage.getItem('noble_todos') || '[]');
-        let calcValue = '0';
-        let calcOperator = null;
-        let calcPrevValue = null;
-
-        // ==================== MENU FUNCTIONS ====================
         function toggleMenu() { document.getElementById('sidebar').classList.toggle('active'); }
         function showPage(id) { 
             document.querySelectorAll('.box').forEach(b => b.style.display = 'none');
             document.getElementById(id).style.display = 'block';
-            if(window.innerWidth < 800) toggleMenu(); 
-            window.scrollTo(0,0);
-            loadNotes();
-            loadTodos();
+            toggleMenu(); window.scrollTo(0,0);
         }
 
-        // ==================== TOAST NOTIFICATION ====================
-        function showToast(message, type = 'info') {
-            const toast = document.createElement('div');
-            toast.className = 'toast';
-            toast.innerHTML = message;
-            document.body.appendChild(toast);
-            setTimeout(() => toast.remove(), 3000);
-        }
-
-        // ==================== HOME FUNCTIONS ====================
-        async function uploadFile() {
-            const file = document.getElementById('fileInput').files[0];
-            const status = document.getElementById('fileStatus');
-            const result = document.getElementById('urlResult');
-            if(!file) return;
-            status.innerText = "⏳ Uploading...";
-            const formData = new FormData();
-            formData.append('file', file);
-            try {
-                const res = await fetch('https://telegra.ph/upload', { method: 'POST', body: formData });
-                const data = await res.json();
-                const url = "https://telegra.ph" + data[0].src;
-                status.innerText = "✅ Berhasil!";
-                result.innerHTML = `Link: <a href="${url}" target="_blank" style="color:#00ff88;">${url}</a>`;
-                showToast('Upload berhasil!', 'success');
-            } catch { 
-                status.innerText = "❌ Gagal!";
-                showToast('Upload gagal!', 'error');
-            }
-        }
-
-        async function getVisitorCount() {
-            try {
-                const res = await fetch('https://api.countapi.xyz/hit/noblecentral/visits');
-                const data = await res.json();
-                document.getElementById('visitorCount').innerHTML = `👥 Visitor: ${data.value}`;
-            } catch(e) {
-                document.getElementById('visitorCount').innerHTML = `👥 Visitor: 1,234`;
-            }
-        }
-
-        // ==================== AI ====================
+        // --- AI CHAT (Luminai API) ---
         async function askAI() {
-            const p = document.getElementById('aiInput').value;
-            if(!p) { showToast('Masukkan pertanyaan!', 'error'); return; }
+            const prompt = document.getElementById('aiInput').value;
             const res = document.getElementById('aiResult');
-            res.innerHTML = "<span class='loader'></span> Mengetik...";
+            if(!prompt) return;
+            res.innerHTML = "⏳ Noble AI sedang mengetik...";
             try {
-                const r = await fetch(`https://api.paxsenix.biz.id/ai/gpt4?text=${encodeURIComponent(p)}`);
+                const r = await fetch(`https://api.paxsenix.biz.id/ai/gpt4?text=${encodeURIComponent(prompt)}`);
                 const d = await r.json();
-                res.innerText = d.message || d.result || "Maaf, tidak ada respons.";
-            } catch { 
-                res.innerText = "Error! Coba lagi nanti.";
-                showToast('AI Error!', 'error');
-            }
+                res.innerText = d.message || d.result;
+            } catch { res.innerText = "Maaf, AI sedang offline."; }
         }
 
-        // ==================== YOUTUBE DOWNLOADER - UPDATED WITH API KEY ====================
-        async function dlYouTube() {
-            const url = document.getElementById('ytUrl').value;
-            const resDiv = document.getElementById('ytResult');
-            
-            if(!url) {
-                showToast("Link mana, Ri? Jangan kosong!", 'error');
-                return;
-            }
-            
-            resDiv.innerHTML = "<div style='text-align:center'><span class='loader'></span> Sabar, lagi narik data...</div>";
-        
-            const options = {
-                method: 'GET',
-                headers: {
-                    'x-rapidapi-key': RAPIDAPI_KEY,
-                    'x-rapidapi-host': 'youtube-video-fast-downloader-24-7.p.rapidapi.com'
-                }
-            };
-        
-            try {
-                const response = await fetch(`https://youtube-video-fast-downloader-24-7.p.rapidapi.com/get-videos-info?url=${encodeURIComponent(url)}`, options);
-                const data = await response.json();
-                
-                // Cek apakah ada error
-                if(data.error) {
-                    resDiv.innerHTML = `<p style="color:#ff4757;">Gagal! ${data.error}</p>`;
-                    return;
-                }
-                
-                // Tampilkan hasil dengan berbagai pilihan kualitas
-                let qualitiesHtml = '';
-                if(data.formats && data.formats.length > 0) {
-                    qualitiesHtml = '<div class="download-options">';
-                    data.formats.forEach(format => {
-                        qualitiesHtml += `
-                            <div class="quality-option" onclick="window.open('${format.url}', '_blank')">
-                                <i class="fas fa-download"></i> ${format.quality || format.resolution || 'Video'} (${format.size || 'Unknown'})
-                            </div>
-                        `;
-                    });
-                    qualitiesHtml += '</div>';
-                } else if(data.url) {
-                    qualitiesHtml = `<div class="download-options"><div class="quality-option" onclick="window.open('${data.url}', '_blank')"><i class="fas fa-download"></i> Download Video</div></div>`;
-                }
-                
-                resDiv.innerHTML = `
-                    <img src="${data.thumbnail || data.thumb}" style="width:100%; border-radius:12px; margin-bottom:10px;">
-                    <p style="font-weight:bold; margin-bottom:10px;">${data.title || 'YouTube Video'}</p>
-                    <p style="font-size:12px; color:#888; margin-bottom:10px;">Duration: ${data.duration || 'Unknown'} | Views: ${data.views ? data.views.toLocaleString() : 'N/A'}</p>
-                    ${qualitiesHtml}
-                    <p style="font-size:11px; color:#888; margin-top:10px;">Klik salah satu kualitas untuk download</p>
-                `;
-                showToast('Video siap download!', 'success');
-            } catch (err) {
-                resDiv.innerHTML = `<p style="color:#ff4757;">Gagal! API limit atau link lo salah, Ri.<br>Error: ${err.message}</p>`;
-                console.error(err);
-            }
-        }
-
-        // ==================== TIKTOK DOWNLOADER ====================
+        // --- TIKTOK DL ---
         async function dlTikTok() {
             const url = document.getElementById('tkUrl').value;
-            if(!url) { showToast('Masukkan URL TikTok!', 'error'); return; }
-            const resultDiv = document.getElementById('tkResult');
-            resultDiv.innerHTML = "<div style='text-align:center'><span class='loader'></span> Memproses...</div>";
+            const res = document.getElementById('tkResult');
+            res.innerHTML = "⏳ Sedang memproses...";
             try {
-                const apiUrl = `https://tikwm.com/api/`;
-                const response = await fetch(apiUrl, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-                    body: `url=${encodeURIComponent(url)}&hd=1`
-                });
-                const data = await response.json();
-                if(data.code !== 0) throw new Error('Gagal mengambil video');
-                const info = data.data;
-                resultDiv.innerHTML = `
-                    <div style="margin-top:15px;">
-                        <img src="${info.cover}" style="width:100%; border-radius:12px;">
-                        <p><strong>${info.title || 'TikTok Video'}</strong></p>
-                        <p>👤 ${info.author?.unique_id} | ❤️ ${info.digg_count?.toLocaleString()} | 👁️ ${info.play_count?.toLocaleString()}</p>
-                        <div class="download-options">
-                            <div class="quality-option" onclick="window.open('${info.play}', '_blank')"><i class="fas fa-download"></i> HD (No Watermark)</div>
-                            <div class="quality-option" onclick="window.open('${info.wmplay || info.play}', '_blank')"><i class="fas fa-download"></i> SD (With Watermark)</div>
-                            <div class="quality-option" onclick="window.open('${info.music}', '_blank')"><i class="fas fa-music"></i> Audio MP3</div>
-                        </div>
-                    </div>
-                `;
-                showToast('Video siap download!', 'success');
-            } catch(e) {
-                resultDiv.innerHTML = '<p style="color:#ff4757;">Error: Gagal mengambil video!</p>';
-            }
+                const r = await fetch(`https://www.tikwm.com/api/?url=${url}`);
+                const d = await r.json();
+                res.innerHTML = `<video class="res-media" controls src="${d.data.play}"></video>`;
+            } catch { res.innerHTML = "Gagal mengambil video!"; }
         }
 
-        // ==================== INSTAGRAM DOWNLOADER ====================
-        async function dlInstagram() {
-            const url = document.getElementById('igUrl').value;
-            if(!url) { showToast('Masukkan URL Instagram!', 'error'); return; }
-            const resultDiv = document.getElementById('igResult');
-            resultDiv.innerHTML = "<div style='text-align:center'><span class='loader'></span> Memproses...</div>";
-            try {
-                const apiUrl = `https://instagram-downloader-download-instagram-videos-stories.p.rapidapi.com/index?url=${encodeURIComponent(url)}`;
-                const response = await fetch(apiUrl, {
-                    headers: {
-                        'x-rapidapi-key': RAPIDAPI_KEY,
-                        'x-rapidapi-host': 'instagram-downloader-download-instagram-videos-stories.p.rapidapi.com'
-                    }
-                });
-                const data = await response.json();
-                if(!data.media) throw new Error('Gagal mengambil media');
-                const media = data.media[0];
-                resultDiv.innerHTML = `
-                    <div style="margin-top:15px;">
-                        <img src="${media.thumbnail}" style="width:100%; border-radius:12px;">
-                        <div class="download-options">
-                            <div class="quality-option" onclick="window.open('${media.url}', '_blank')"><i class="fas fa-download"></i> Download HD</div>
-                            ${media.url_low ? `<div class="quality-option" onclick="window.open('${media.url_low}', '_blank')"><i class="fas fa-download"></i> Download SD</div>` : ''}
-                        </div>
-                    </div>
-                `;
-                showToast('Video siap download!', 'success');
-            } catch(e) {
-                resultDiv.innerHTML = '<p style="color:#ff4757;">Error: Gagal mengambil video!</p>';
-            }
-        }
-
-        // ==================== FACEBOOK DOWNLOADER ====================
-        async function dlFacebook() {
-            const url = document.getElementById('fbUrl').value;
-            if(!url) { showToast('Masukkan URL Facebook!', 'error'); return; }
-            const resultDiv = document.getElementById('fbResult');
-            resultDiv.innerHTML = "<div style='text-align:center'><span class='loader'></span> Memproses...</div>";
-            try {
-                const apiUrl = `https://facebook-video-downloader1.p.rapidapi.com/getVideo?url=${encodeURIComponent(url)}`;
-                const response = await fetch(apiUrl, {
-                    headers: {
-                        'x-rapidapi-key': RAPIDAPI_KEY,
-                        'x-rapidapi-host': 'facebook-video-downloader1.p.rapidapi.com'
-                    }
-                });
-                const data = await response.json();
-                if(!data.video) throw new Error('Gagal mengambil video');
-                resultDiv.innerHTML = `
-                    <div style="margin-top:15px;">
-                        <img src="${data.thumbnail}" style="width:100%; border-radius:12px;">
-                        <div class="download-options">
-                            ${data.video.hd ? `<div class="quality-option" onclick="window.open('${data.video.hd}', '_blank')"><i class="fas fa-download"></i> Download HD</div>` : ''}
-                            <div class="quality-option" onclick="window.open('${data.video.sd}', '_blank')"><i class="fas fa-download"></i> Download SD</div>
-                        </div>
-                    </div>
-                `;
-                showToast('Video siap download!', 'success');
-            } catch(e) {
-                resultDiv.innerHTML = '<p style="color:#ff4757;">Error: Gagal mengambil video!</p>';
-            }
-        }
-
-        // ==================== TWITTER DOWNLOADER ====================
-        async function dlTwitter() {
-            const url = document.getElementById('twUrl').value;
-            if(!url) { showToast('Masukkan URL Twitter!', 'error'); return; }
-            const resultDiv = document.getElementById('twResult');
-            resultDiv.innerHTML = "<div style='text-align:center'><span class='loader'></span> Memproses...</div>";
-            try {
-                const apiUrl = `https://twitter-video-downloader.p.rapidapi.com/getVideo?url=${encodeURIComponent(url)}`;
-                const response = await fetch(apiUrl, {
-                    headers: {
-                        'x-rapidapi-key': RAPIDAPI_KEY,
-                        'x-rapidapi-host': 'twitter-video-downloader.p.rapidapi.com'
-                    }
-                });
-                const data = await response.json();
-                if(!data.video) throw new Error('Gagal mengambil video');
-                resultDiv.innerHTML = `
-                    <div style="margin-top:15px;">
-                        <div class="download-options">
-                            <div class="quality-option" onclick="window.open('${data.video}', '_blank')"><i class="fas fa-download"></i> Download Video</div>
-                        </div>
-                    </div>
-                `;
-                showToast('Video siap download!', 'success');
-            } catch(e) {
-                resultDiv.innerHTML = '<p style="color:#ff4757;">Error: Gagal mengambil video!</p>';
-            }
-        }
-
-        // ==================== PINTEREST DOWNLOADER ====================
+        // --- PINTEREST DL ---
         async function dlPin() {
             const url = document.getElementById('pinUrl').value;
-            if(!url) { showToast('Masukkan URL Pinterest!', 'error'); return; }
-            const resultDiv = document.getElementById('pinResult');
-            resultDiv.innerHTML = "<div style='text-align:center'><span class='loader'></span> Memproses...</div>";
+            const res = document.getElementById('pinResult');
+            res.innerHTML = "⏳ Processing...";
             try {
-                const apiUrl = `https://pinterest-downloader.p.rapidapi.com/download?url=${encodeURIComponent(url)}`;
-                const response = await fetch(apiUrl, {
-                    headers: {
-                        'x-rapidapi-key': RAPIDAPI_KEY,
-                        'x-rapidapi-host': 'pinterest-downloader.p.rapidapi.com'
-                    }
-                });
-                const data = await response.json();
-                if(!data.media) throw new Error('Gagal mengambil media');
-                resultDiv.innerHTML = `
-                    <div style="margin-top:15px;">
-                        <div class="download-options">
-                            <div class="quality-option" onclick="window.open('${data.media}', '_blank')"><i class="fas fa-download"></i> Download</div>
-                        </div>
-                    </div>
-                `;
-                showToast('Media siap download!', 'success');
-            } catch(e) {
-                resultDiv.innerHTML = '<p style="color:#ff4757;">Error: Gagal mengambil media!</p>';
-            }
+                const r = await fetch(`https://api.lolhuman.xyz/api/pinterest?apikey=free&url=${url}`);
+                const d = await r.json();
+                res.innerHTML = `<img class="res-media" src="${d.result}">`;
+            } catch { res.innerHTML = "API Pinterest Sedang Limit."; }
         }
 
-        // ==================== MEDIAFIRE DOWNLOADER ====================
-        async function dlMediafire() {
-            const url = document.getElementById('mfUrl').value;
-            if(!url) { showToast('Masukkan URL MediaFire!', 'error'); return; }
-            const resultDiv = document.getElementById('mfResult');
-            resultDiv.innerHTML = "<div style='text-align:center'><span class='loader'></span> Memproses...</div>";
-            try {
-                const apiUrl = `https://mediafire-downloader.p.rapidapi.com/download?url=${encodeURIComponent(url)}`;
-                const response = await fetch(apiUrl, {
-                    headers: {
-                        'x-rapidapi-key': RAPIDAPI_KEY,
-                        'x-rapidapi-host': 'mediafire-downloader.p.rapidapi.com'
-                    }
-                });
-                const data = await response.json();
-                if(!data.download_url) throw new Error('Gagal mengambil file');
-                resultDiv.innerHTML = `
-                    <div style="margin-top:15px;">
-                        <p>📁 ${data.filename || 'File'}</p>
-                        <p>📊 ${data.filesize || 'Unknown'} MB</p>
-                        <div class="download-options">
-                            <div class="quality-option" onclick="window.open('${data.download_url}', '_blank')"><i class="fas fa-download"></i> Download File</div>
-                        </div>
-                    </div>
-                `;
-                showToast('File siap download!', 'success');
-            } catch(e) {
-                resultDiv.innerHTML = '<p style="color:#ff4757;">Error: Gagal mengambil file!</p>';
-            }
-        }
-
-        // ==================== QR GENERATOR ====================
+        // --- QR GEN ---
         function genQR() {
             const text = document.getElementById('qrText').value;
-            if(!text) { showToast('Masukkan teks atau URL!', 'error'); return; }
-            const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(text)}`;
-            document.getElementById('qrResult').innerHTML = `<img src="${qrUrl}" style="border-radius:15px;"><div class="download-options" style="margin-top:10px;"><div class="quality-option" onclick="window.open('${qrUrl}', '_blank')"><i class="fas fa-download"></i> Download QR</div></div>`;
-            showToast('QR Code berhasil dibuat!', 'success');
+            document.getElementById('qrResult').innerHTML = `<img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${text}" style="border:10px solid #fff;">`;
         }
 
-        // ==================== CEK IP ====================
+        // --- IP CHECK ---
         async function checkIP() {
-            const resultDiv = document.getElementById('ipResult');
-            resultDiv.innerHTML = "<div style='text-align:center'><span class='loader'></span> Mengecek IP...</div>";
-            try {
-                const res = await fetch('https://api.ipify.org?format=json');
-                const data = await res.json();
-                resultDiv.innerHTML = `
-                    <p><strong>IP Address Anda:</strong> ${data.ip}</p>
-                    <p><strong>Lokasi:</strong> <span id="ipLocation">Mendapatkan lokasi...</span></p>
-                `;
-                const locationRes = await fetch(`https://ipapi.co/${data.ip}/json/`);
-                const locationData = await locationRes.json();
-                document.getElementById('ipLocation').innerHTML = `${locationData.city}, ${locationData.country_name}`;
-            } catch(e) {
-                resultDiv.innerHTML = '<p style="color:#ff4757;">Error: Gagal mendapatkan IP!</p>';
-            }
+            const r = await fetch('https://ipapi.co/json/');
+            const d = await r.json();
+            document.getElementById('ipResult').innerHTML = `IP: ${d.ip}<br>Lokasi: ${d.city}, ${d.country_name}<br>ISP: ${d.org}`;
         }
 
-        function checkOtherIP() {
-            const ip = prompt('Masukkan IP address yang ingin dicek:');
-            if(!ip) return;
-            const resultDiv = document.getElementById('ipResult');
-            resultDiv.innerHTML = "<div style='text-align:center'><span class='loader'></span> Mengecek IP...</div>";
-            fetch(`https://ipapi.co/${ip}/json/`)
-                .then(res => res.json())
-                .then(data => {
-                    resultDiv.innerHTML = `
-                        <p><strong>IP:</strong> ${data.ip}</p>
-                        <p><strong>Lokasi:</strong> ${data.city}, ${data.region}, ${data.country_name}</p>
-                        <p><strong>ISP:</strong> ${data.org}</p>
-                    `;
-                })
-                .catch(() => resultDiv.innerHTML = '<p style="color:#ff4757;">Error: IP tidak valid!</p>');
+        // --- LAINNYA ---
+        async function getQuote() {
+            const r = await fetch('https://api.quotable.io/random');
+            const d = await r.json();
+            document.getElementById('quote-area').innerText = `"${d.content}"`;
         }
-
-        // ==================== CEK CUACA ====================
         async function getWeather() {
             const city = document.getElementById('cityInput').value;
-            if(!city) { showToast('Masukkan nama kota!', 'error'); return; }
-            const resultDiv = document.getElementById('weatherResult');
-            resultDiv.innerHTML = "<div style='text-align:center'><span class='loader'></span> Mengecek cuaca...</div>";
-            try {
-                const res = await fetch(`https://wttr.in/${encodeURIComponent(city)}?format=j1`);
-                const data = await res.json();
-                const current = data.current_condition[0];
-                resultDiv.innerHTML = `
-                    <p><strong>📍 ${city.toUpperCase()}</strong></p>
-                    <p>🌡️ Suhu: ${current.temp_C}°C</p>
-                    <p>☁️ Cuaca: ${current.weatherDesc[0].value}</p>
-                    <p>💧 Kelembaban: ${current.humidity}%</p>
-                    <p>💨 Angin: ${current.windspeedKmph} km/h</p>
-                `;
-            } catch(e) {
-                resultDiv.innerHTML = '<p style="color:#ff4757;">Error: Kota tidak ditemukan!</p>';
-            }
+            const r = await fetch(`https://wttr.in/${city}?format=j1`);
+            const d = await r.json();
+            document.getElementById('weatherResult').innerHTML = `<h2>${d.current_condition[0].temp_C}°C</h2><p>${d.current_condition[0].weatherDesc[0].value}</p>`;
         }
-
-        // ==================== KALKULATOR ====================
-        function calcAppend(val) {
-            const display = document.getElementById('calcDisplay');
-            if(calcValue === '0') calcValue = val;
-            else calcValue += val;
-            display.value = calcValue;
+        async function translateText() {
+            const t = document.getElementById('transInput').value;
+            const r = await fetch(`https://api.mymemory.translated.net/get?q=${t}&langpair=en|id`);
+            const d = await r.json();
+            document.getElementById('transResult').innerText = d.responseData.translatedText;
         }
-        function calcClear() {
-            calcValue = '0';
-            calcOperator = null;
-            calcPrevValue = null;
-            document.getElementById('calcDisplay').value = '0';
-        }
-        function calcSqrt() {
-            calcValue = Math.sqrt(parseFloat(calcValue)).toString();
-            document.getElementById('calcDisplay').value = calcValue;
-        }
-        function calcPow2() {
-            calcValue = (parseFloat(calcValue) ** 2).toString();
-            document.getElementById('calcDisplay').value = calcValue;
-        }
-        function calcPercent() {
-            calcValue = (parseFloat(calcValue) / 100).toString();
-            document.getElementById('calcDisplay').value = calcValue;
-        }
-        function solveCalc() {
-            try {
-                const result = eval(calcValue);
-                calcValue = result.toString();
-                document.getElementById('calcDisplay').value = calcValue;
-            } catch(e) {
-                showToast('Error dalam perhitungan!', 'error');
-            }
-        }
-
-        // ==================== ANIME HD ====================
+        let cV = "";
+        function addCalc(v) { cV += v; document.getElementById('calcDisplay').value = cV; }
+        function clearCalc() { cV = ""; document.getElementById('calcDisplay').value = ""; }
+        function solveCalc() { try { cV = eval(cV).toString(); document.getElementById('calcDisplay').value = cV; } catch { clearCalc(); } }
         async function getAnime() {
-            const resultDiv = document.getElementById('animeResult');
-            resultDiv.innerHTML = "<div style='text-align:center'><span class='loader'></span> Mengambil gambar...</div>";
-            try {
-                const res = await fetch('https://api.waifu.pics/sfw/waifu');
-                const data = await res.json();
-                resultDiv.innerHTML = `<img src="${data.url}" style="width:100%; border-radius:12px;"><div class="download-options" style="margin-top:10px;"><div class="quality-option" onclick="window.open('${data.url}', '_blank')"><i class="fas fa-download"></i> Download Image</div></div><button class="btn" style="margin-top:10px;" onclick="getAnime()">Random Lagi</button>`;
-            } catch(e) {
-                resultDiv.innerHTML = '<p style="color:#ff4757;">Error: Gagal mengambil gambar!</p>';
-            }
+            const r = await fetch('https://nekos.best/api/v2/neko');
+            const d = await r.json();
+            document.getElementById('animeResult').innerHTML = `<img src="${d.results[0].url}" class="res-media">`;
         }
-
-        // ==================== MINI GAME ====================
+        let target = Math.floor(Math.random() * 10) + 1;
         function playGame() {
-            const guess = parseInt(document.getElementById('gInput').value);
-            const msg = document.getElementById('gMsg');
-            if(isNaN(guess)) { msg.innerHTML = 'Masukkan angka yang valid!'; return; }
-            if(guess === gameNumber) {
-                msg.innerHTML = `🎉 SELAMAT! Angka ${gameNumber} benar! 🎉<br>Game reset!`;
-                gameNumber = Math.floor(Math.random() * 100) + 1;
-            } else if(guess < gameNumber) {
-                msg.innerHTML = `📉 Terlalu kecil! Coba lagi. (Angka rahasia lebih besar)`;
-            } else {
-                msg.innerHTML = `📈 Terlalu besar! Coba lagi. (Angka rahasia lebih kecil)`;
-            }
-            document.getElementById('gInput').value = '';
+            const g = document.getElementById('gInput').value;
+            if(g == target) { document.getElementById('gMsg').innerText="TEPAT! 🎉"; target=Math.floor(Math.random()*10)+1; }
+            else { document.getElementById('gMsg').innerText="SALAH! ❌"; }
         }
-        function resetGame() {
-            gameNumber = Math.floor(Math.random() * 100) + 1;
-            document.getElementById('gMsg').innerHTML = 'Game direset! Tebak angka 1-100!';
-            document.getElementById('gInput').value = '';
-        }
-
-        // ==================== STICKER MAKER ====================
-        function makeSticker() {
-            const file = document.getElementById('stickerInput').files[0];
-            if(!file) { showToast('Pilih gambar dulu!', 'error'); return; }
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                const img = document.createElement('img');
-                img.src = e.target.result;
-                img.style.width = '100%';
-                img.style.borderRadius = '12px';
-                document.getElementById('stickerResult').innerHTML = '';
-                document.getElementById('stickerResult').appendChild(img);
-                showToast('Stiker siap! Klik kanan save as image', 'success');
-            };
-            reader.readAsDataURL(file);
-        }
-
-        // ==================== TEXT TOOLS ====================
-        function toUpperCase() {
-            const text = document.getElementById('textInput').value;
-            document.getElementById('textResult').innerHTML = `<pre>${text.toUpperCase()}</pre>`;
-        }
-        function toLowerCase() {
-            const text = document.getElementById('textInput').value;
-            document.getElementById('textResult').innerHTML = `<pre>${text.toLowerCase()}</pre>`;
-        }
-        function reverseText() {
-            const text = document.getElementById('textInput').value;
-            document.getElementById('textResult').innerHTML = `<pre>${text.split('').reverse().join('')}</pre>`;
-        }
-        function countChars() {
-            const text = document.getElementById('textInput').value;
-            document.getElementById('textResult').innerHTML = `<p>Karakter: ${text.length} | Kata: ${text.trim().split(/\s+/).length}</p>`;
-        }
-        function toAlay() {
-            const text = document.getElementById('textInput').value;
-            const alay = text.replace(/a/gi,'4').replace(/e/gi,'3').replace(/i/gi,'1').replace(/o/gi,'0').replace(/s/gi,'5');
-            document.getElementById('textResult').innerHTML = `<pre>${alay}</pre>`;
-        }
-        function toBinary() {
-            const text = document.getElementById('textInput').value;
-            const binary = text.split('').map(c => c.charCodeAt(0).toString(2).padStart(8,'0')).join(' ');
-            document.getElementById('textResult').innerHTML = `<pre>${binary}</pre>`;
-        }
-
-        // ==================== IMAGE EDITOR ====================
-        function compressImage() {
-            const file = document.getElementById('imageInput').files[0];
-            if(!file) { showToast('Pilih gambar dulu!', 'error'); return; }
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                const img = new Image();
-                img.onload = function() {
-                    const canvas = document.createElement('canvas');
-                    canvas.width = img.width;
-                    canvas.height = img.height;
-                    const ctx = canvas.getContext('2d');
-                    ctx.drawImage(img, 0, 0);
-                    canvas.toBlob(blob => {
-                        const url = URL.createObjectURL(blob);
-                        document.getElementById('imageResult').innerHTML = `<img src="${url}" style="width:100%; border-radius:12px;"><div class="download-options" style="margin-top:10px;"><div class="quality-option" onclick="window.open('${url}', '_blank')"><i class="fas fa-download"></i> Download</div></div>`;
-                        showToast('Gambar dikompres!', 'success');
-                    }, 'image/jpeg', 0.7);
-                };
-                img.src = e.target.result;
-            };
-            reader.readAsDataURL(file);
-        }
-        function toGrayscale() {
-            const file = document.getElementById('imageInput').files[0];
-            if(!file) { showToast('Pilih gambar dulu!', 'error'); return; }
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                const img = new Image();
-                img.onload = function() {
-                    const canvas = document.createElement('canvas');
-                    canvas.width = img.width;
-                    canvas.height = img.height;
-                    const ctx = canvas.getContext('2d');
-                    ctx.drawImage(img, 0, 0);
-                    const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
-                    const data = imageData.data;
-                    for(let i = 0; i < data.length; i += 4) {
-                        const avg = (data[i] + data[i+1] + data[i+2]) / 3;
-                        data[i] = avg;
-                        data[i+1] = avg;
-                        data[i+2] = avg;
-                    }
-                    ctx.putImageData(imageData, 0, 0);
-                    const url = canvas.toDataURL();
-                    document.getElementById('imageResult').innerHTML = `<img src="${url}" style="width:100%; border-radius:12px;"><div class="download-options" style="margin-top:10px;"><div class="quality-option" onclick="window.open('${url}', '_blank')"><i class="fas fa-download"></i> Download</div></div>`;
-                };
-                img.src = e.target.result;
-            };
-            reader.readAsDataURL(file);
-        }
-        function toSepia() {
-            const file = document.getElementById('imageInput').files[0];
-            if(!file) { showToast('Pilih gambar dulu!', 'error'); return; }
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                const img = new Image();
-                img.onload = function() {
-                    const canvas = document.createElement('canvas');
-                    canvas.width = img.width;
-                    canvas.height = img.height;
-                    const ctx = canvas.getContext('2d');
-                    ctx.drawImage(img, 0, 0);
-                    const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
-                    const data = imageData.data;
-                    for(let i = 0; i < data.length; i += 4) {
-                        const r = data[i];
-                        const g = data[i+1];
-                        const b = data[i+2];
-                        data[i] = Math.min(255, (r * 0.393) + (g * 0.769) + (b * 0.189));
-                        data[i+1] = Math.min(255, (r * 0.349) + (g * 0.686) + (b * 0.168));
-                        data[i+2] = Math.min(255, (r * 0.272) + (g * 0.534) + (b * 0.131));
-                    }
-                    ctx.putImageData(imageData, 0, 0);
-                    const url = canvas.toDataURL();
-                    document.getElementById('imageResult').innerHTML = `<img src="${url}" style="width:100%; border-radius:12px;"><div class="download-options" style="margin-top:10px;"><div class="quality-option" onclick="window.open('${url}', '_blank')"><i class="fas fa-download"></i> Download</div></div>`;
-                };
-                img.src = e.target.result;
-            };
-            reader.readAsDataURL(file);
-        }
-        function rotateImage() {
-            const file = document.getElementById('imageInput').files[0];
-            if(!file) { showToast('Pilih gambar dulu!', 'error'); return; }
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                const img = new Image();
-                img.onload = function() {
-                    const canvas = document.createElement('canvas');
-                    canvas.width = img.height;
-                    canvas.height = img.width;
-                    const ctx = canvas.getContext('2d');
-                    ctx.translate(canvas.width/2, canvas.height/2);
-                    ctx.rotate(Math.PI/2);
-                    ctx.drawImage(img, -img.width/2, -img.height/2);
-                    const url = canvas.toDataURL();
-                    document.getElementById('imageResult').innerHTML = `<img src="${url}" style="width:100%; border-radius:12px;"><div class="download-options" style="margin-top:10px;"><div class="quality-option" onclick="window.open('${url}', '_blank')"><i class="fas fa-download"></i> Download</div></div>`;
-                };
-                img.src = e.target.result;
-            };
-            reader.readAsDataURL(file);
-        }
-
-        // ==================== UNIT CONVERTER ====================
-        function convertUnit() {
-            const value = parseFloat(document.getElementById('convValue').value);
-            const from = document.getElementById('convFrom').value;
-            const to = document.getElementById('convTo').value;
-            const conversions = {
-                cm: 1,
-                m: 100,
-                km: 100000,
-                inch: 2.54,
-                feet: 30.48
-            };
-            const result = (value * conversions[from]) / conversions[to];
-            document.getElementById('convResult').innerHTML = `<p>${value} ${from} = ${result.toFixed(4)} ${to}</p>`;
-        }
-
-        // ==================== PASSWORD GENERATOR ====================
-        function generatePassword() {
-            const length = parseInt(document.getElementById('passLength').value);
-            const useUpper = document.getElementById('useUpper').checked;
-            const useLower = document.getElementById('useLower').checked;
-            const useNumbers = document.getElementById('useNumbers').checked;
-            const useSymbols = document.getElementById('useSymbols').checked;
-            let chars = '';
-            if(useUpper) chars += 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-            if(useLower) chars += 'abcdefghijklmnopqrstuvwxyz';
-            if(useNumbers) chars += '0123456789';
-            if(useSymbols) chars += '!@#$%^&*()_+';
-            if(!chars) { showToast('Pilih minimal 1 opsi!', 'error'); return; }
-            let password = '';
-            for(let i = 0; i < length; i++) {
-                password += chars[Math.floor(Math.random() * chars.length)];
-            }
-            document.getElementById('passwordResult').innerHTML = `<p style="font-size:20px; word-break:break-all;">${password}</p><div class="download-options"><div class="quality-option" onclick="copyToClipboard('${password}')"><i class="fas fa-copy"></i> Copy</div></div>`;
-        }
-
-        function copyToClipboard(text) {
-            navigator.clipboard.writeText(text);
-            showToast('Copied!', 'success');
-        }
-
-        // ==================== SHORT LINK ====================
-        async function shortenUrl() {
-            const url = document.getElementById('longUrl').value;
-            if(!url) { showToast('Masukkan URL!', 'error'); return; }
-            const resultDiv = document.getElementById('shortResult');
-            resultDiv.innerHTML = "<div style='text-align:center'><span class='loader'></span> Memendekkan...</div>";
-            try {
-                const res = await fetch(`https://tinyurl.com/api-create.php?url=${encodeURIComponent(url)}`);
-                const shortUrl = await res.text();
-                resultDiv.innerHTML = `<p><a href="${shortUrl}" target="_blank">${shortUrl}</a></p><div class="download-options"><div class="quality-option" onclick="copyToClipboard('${shortUrl}')"><i class="fas fa-copy"></i> Copy</div></div>`;
-                showToast('URL berhasil dipendekkan!', 'success');
-            } catch(e) {
-                resultDiv.innerHTML = '<p style="color:#ff4757;">Error: Gagal memendekkan URL!</p>';
-            }
-        }
-
-        // ==================== SCAN QR ====================
-        function scanQR() {
-            const file = document.getElementById('qrScanInput').files[0];
-            if(!file) { showToast('Pilih gambar QR Code!', 'error'); return; }
-            const resultDiv = document.getElementById('qrScanResult');
-            resultDiv.innerHTML = "<div style='text-align:center'><span class='loader'></span> Memindai QR...</div>";
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                const img = new Image();
-                img.onload = function() {
-                    const canvas = document.createElement('canvas');
-                    canvas.width = img.width;
-                    canvas.height = img.height;
-                    const ctx = canvas.getContext('2d');
-                    ctx.drawImage(img, 0, 0);
-                    const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
-                    // Gunakan jsQR jika tersedia
-                    if(typeof jsQR !== 'undefined') {
-                        const code = jsQR(imageData.data, canvas.width, canvas.height);
-                        if(code) {
-                            resultDiv.innerHTML = `<p><strong>Hasil Scan:</strong> ${code.data}</p><div class="download-options"><div class="quality-option" onclick="copyToClipboard('${code.data}')"><i class="fas fa-copy"></i> Copy</div></div>`;
-                        } else {
-                            resultDiv.innerHTML = '<p style="color:#ff4757;">Tidak ada QR Code terdeteksi!</p>';
-                        }
-                    } else {
-                        resultDiv.innerHTML = '<p style="color:#ff4757;">Library QR belum siap. Silakan refresh halaman.</p>';
-                    }
-                };
-                img.src = e.target.result;
-            };
-            reader.readAsDataURL(file);
-        }
-
-        // ==================== BMI CALCULATOR ====================
-        function calculateBMI() {
-            const weight = parseFloat(d
+    </script>
+</body>
+    </html>           
